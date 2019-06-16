@@ -1,0 +1,7 @@
+options {
+	directory "/var/cache/bind";
+	listen-on port 53 {any;}; 
+        pid-file "named.pid"; 
+        allow-query{any;};    
+        forwarders{114.114.114.114;};
+};

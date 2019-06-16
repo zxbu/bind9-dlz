@@ -1,0 +1,36 @@
+logging {
+    channel error_log {
+        file "/var/cache/bind/error.log" versions 10 size 32m;
+        severity warning;
+        print-time yes;
+        print-severity yes;
+        print-category yes;
+    };
+
+    channel query_log {
+        file "/var/cache/bind/query.log" versions 10 size 32m;
+        severity debug;
+        print-time yes;
+        print-severity yes;
+        print-category yes;
+    };
+
+    channel default_file {
+        file "/var/cache/bind/default.log" versions 3 size 5m;
+        severity dynamic;
+        print-time yes;
+    };
+    channel general_file {
+        file "/var/cache/bind/general.log" versions 3 size 5m;
+        severity dynamic;
+        print-time yes;
+    };
+
+    category default { error_log; };
+
+    category queries { query_log; };
+    category default { default_file; };
+    category general { general_file; };
+
+};
+

@@ -1,0 +1,13 @@
+dlz "Mysql zone" {
+   database "mysql
+   {dbname=bind-release port=3306 host=localhost user=root pass=password ssl=false}
+   {select zone from t_dns_records where zone = '$zone$' and status = 1}
+   {select ttl, type, mx_priority, case when lower(type)='txt' then concat('\"', data, '\"')
+        when lower(type) = 'soa' then concat_ws(' ', data, resp_person, serial, refresh, retry, expire, minimum)
+        else data end from t_dns_records where zone = '$zone$' and host = '$record$' and status = 1}
+   {}
+   {select ttl, type, host, mx_priority, case when lower(type)='txt' then
+        concat('\"', data, '\"') else data end, resp_person, serial, refresh, retry, expire,
+        minimum from t_dns_records where zone = '$zone$' and status = 1}
+   {SELECT '$zone$' from DUAL WHERE '$client$' IS NOT NULL}";
+};
