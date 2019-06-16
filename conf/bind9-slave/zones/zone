@@ -1,0 +1,17 @@
+zone "a.com." IN {
+      type slave;
+      file "/var/cache/bind/slaves/yijiupidev.com.zone";
+      masters{ 1.1.1.1; };
+};
+zone "b.com." IN {
+      type slave;
+      file "/var/cache/bind/slaves/yijiupitest.com.zone";
+      masters{ 1.1.1.1; };
+};
+zone "c." IN {
+      type slave;
+      file "/var/cache/bind/slaves/yjp.com.zone";
+      masters{ 1.1.1.1; };
+};
+
+

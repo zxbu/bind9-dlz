@@ -1,0 +1,9 @@
+options {
+	directory "/var/cache/bind";
+        max-cache-size    832M;
+	listen-on port 53 {any;}; 
+        pid-file "named.pid"; 
+        allow-query{any;};    
+        allow-notify {any;};
+        forwarders{114.114.114.114;};
+};
